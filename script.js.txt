@@ -1,0 +1,29 @@
+// Simulação de filtro de vagas
+function filtrarVagas() {
+    const localizacao = document.getElementById('localizacao').value.toLowerCase();
+    const tipo = document.getElementById('tipo').value;
+    const vagas = document.querySelectorAll('.vaga');
+
+    vagas.forEach(vaga => {
+        const texto = vaga.textContent.toLowerCase();
+        const matchLocal = !localizacao || texto.includes(localizacao);
+        const matchTipo = !tipo || texto.includes(tipo);
+        vaga.style.display = matchLocal && matchTipo ? 'block' : 'none';
+    });
+}
+
+// Simulação de inscrição e pagamento
+document.getElementById('form-inscrever').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const nome = document.getElementById('nome').value;
+    
+    // Simulação: No backend real, integre com Stripe para cobrança recorrente de $15/mês
+    alert(`Inscrição simulada! ${nome}, você pagou $15/mês. Agora receberá notificações de novas vagas no email ${email}.`);
+    document.getElementById('mensagem').textContent = 'Inscrição realizada! Verifique seu email para confirmação.';
+    
+    // Simulação de notificação: No real, envie email ou push
+    setTimeout(() => {
+        alert('Nova vaga publicada: Analista de Dados em São Paulo. Você foi notificado!');
+    }, 5000); // Simula uma nova vaga após 5 segundos
+});
